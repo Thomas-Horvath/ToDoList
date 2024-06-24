@@ -1,6 +1,4 @@
-// Bootstrap tooltip megjelenítése
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 
 
 
@@ -162,6 +160,9 @@ function renderTasks(tasksList) {
             }
         });
     });
+    // Bootstrap tooltip megjelenítése
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     localStorage.setItem("tasksList", JSON.stringify(tasksList));
 }
 

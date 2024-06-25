@@ -3,6 +3,7 @@
 
 
 
+
 // szelektált elemek
 const inputText = document.querySelector('.input-text');
 const inputForm = document.querySelector('.input-form');
@@ -43,25 +44,19 @@ function listItemTamplate(value, id, success) {
     // Létrehozzuk a szerkesztés (<button class="btn btn-warning edit">)
     const editButton = document.createElement('button');
     editButton.classList.add('btn', 'btn-warning', 'edit');
-    editButton.setAttribute('data-bs-toggle', 'tooltip');
-    editButton.setAttribute('data-bs-placement', 'bottom');
-    editButton.setAttribute('data-bs-title', 'Szerkesztés');
+    editButton.setAttribute('title', 'Szerkesztés');
     editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
 
     // Létrehozzuk a befejezés (<button class="btn btn-success success">)
     const successButton = document.createElement('button');
     successButton.classList.add('btn', 'btn-success', 'success');
-    successButton.setAttribute('data-bs-toggle', 'tooltip');
-    successButton.setAttribute('data-bs-placement', 'bottom');
-    successButton.setAttribute('data-bs-title', 'Befejezés');
+    successButton.setAttribute('title', 'Befejezés');
     successButton.innerHTML = '<i class="fa-solid fa-check"></i>';
 
     // Létrehozzuk a törlés (<button class="btn btn-danger delete">)
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('btn', 'btn-danger', 'delete');
-    deleteButton.setAttribute('data-bs-toggle', 'tooltip');
-    deleteButton.setAttribute('data-bs-placement', 'bottom');
-    deleteButton.setAttribute('data-bs-title', 'Törlés');
+    deleteButton.setAttribute('title', 'Törlés');
     deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
 
     // Hozzáadjuk a gombokat a buttonGroup-hoz
@@ -152,17 +147,18 @@ function renderTasks(tasksList) {
             const input = document.querySelector(`#${task.id} .text`);
             if (input.disabled) {
                 input.disabled = false;
+                input.setAttribute("style", "background : #bbb");
             } else {
                 task.value = input.value.trim();
                 input.disabled = true;
+
                 localStorage.setItem("tasksList", JSON.stringify(tasksList));
                 renderTasks(tasksList);
             }
         });
     });
-    // Bootstrap tooltip megjelenítése
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    
     localStorage.setItem("tasksList", JSON.stringify(tasksList));
 }
 
